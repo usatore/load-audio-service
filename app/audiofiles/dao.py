@@ -1,6 +1,6 @@
 from app.dao.base import BaseDAO
 from app.audiofiles.models import Audiofiles
-from app.database import async_sessionmaker
+from app.database import async_session_maker
 from sqlalchemy import insert
 
 class AudiofilesDAO(BaseDAO):

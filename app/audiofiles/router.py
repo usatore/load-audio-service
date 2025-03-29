@@ -5,6 +5,7 @@ from fastapi import APIRouter, UploadFile, Depends
 from app.audiofiles.dao import AudiofilesDAO
 from app.users.models import Users
 
+
 router = APIRouter(prefix="/audiofiles", tags=["Работа с аудиофайлами"])
 
 @router.post("/load", status_code=201)
@@ -23,3 +24,11 @@ async def add_audiofile(
     await AudiofilesDAO.add(filename=filename, filepath=filepath, user_id=user.id)
 
     return {"message": "Файл успешно загружен"}
+
+
+@router.get("")
+async def get_audiofiles(
+    user: Users = Depends(get_current_user)
+):
+    return await AudiofilesDAO.find_all(user_id=user.id)
+
