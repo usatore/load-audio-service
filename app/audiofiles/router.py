@@ -13,7 +13,7 @@ async def add_audiofile(
         file: UploadFile,
         user: Users = Depends(get_current_user)
 ):
-    user_folder = f"app/storage/user_{user.id}"
+    user_folder = f"storage/user_{user.id}"
     os.makedirs(user_folder, exist_ok=True)
     filepath = os.path.join(user_folder, f"{filename}.mp3")
 
