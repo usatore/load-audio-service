@@ -10,7 +10,7 @@ class Users(Base):
     email = Column(String, nullable=False)
     oauth_id = Column(String, nullable=False)
 
-    audiofile = relationship("Audiofiles", back_populates="user")
+    audiofiles = relationship("Audiofiles", back_populates="user")
 
 
     def __str__(self):
