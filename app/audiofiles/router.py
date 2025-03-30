@@ -4,6 +4,7 @@ import os
 from fastapi import APIRouter, UploadFile, Depends
 from app.audiofiles.dao import AudiofilesDAO
 from app.users.models import Users
+from app.users.dependencies import get_current_user
 
 
 router = APIRouter(prefix="/audiofiles", tags=["Работа с аудиофайлами"])

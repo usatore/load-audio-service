@@ -8,9 +8,9 @@ class Users(Base):
 
     id = Column(Integer, primary_key=True, nullable=False)
     email = Column(String, nullable=False)
-    oauth_id = Column(String, nullable=False)
+    hashed_password = Column(String, nullable=False)
 
-    audiofiles = relationship("Audiofiles", back_populates="user")
+    audiofile = relationship("Audiofiles", back_populates="user")
 
 
     def __str__(self):

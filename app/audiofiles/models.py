@@ -13,6 +13,8 @@ class Audiofiles(Base):
 
     user = relationship("Users", back_populates="audiofile")
 
-
     def __str__(self):
-        return f"Файл {self.email}"
+        return f"Файл {self.filename} по адресу {self.filepath}"
+
+
+
