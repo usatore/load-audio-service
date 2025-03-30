@@ -3,9 +3,10 @@ from fastapi import APIRouter, Depends, Response
 from app.exceptions import IncorrectEmailOrPasswordException, UserAlreadyExistsException
 from app.users.auth import authenticate_user, create_access_token, get_password_hash
 from app.users.dao import UsersDAO
-from app.users.dependencies import get_current_admin_user, get_current_user
+from app.users.dependencies import get_current_user
 from app.users.models import Users
 from app.users.schemas import SUserAuth
+from app.config import settings
 
 router = APIRouter(
     prefix="/auth",
@@ -18,6 +19,7 @@ async def register_user(user_data: SUserAuth):
     existing_user = await UsersDAO.find_one_or_none(email=user_data.email)
     if existing_user:
         raise UserAlreadyExistsException
+
     hashed_password = get_password_hash(user_data.password)
     await UsersDAO.add(email=user_data.email, hashed_password=hashed_password)
 
@@ -41,7 +43,3 @@ async def logout_user(response: Response):
 async def read_users_me(current_user: Users = Depends(get_current_user)):
     return current_user
 
-
-@router.get("/all")
-async def read_users_all(current_user: Users = Depends(get_current_admin_user)):
-    return await UsersDAO.find_all()

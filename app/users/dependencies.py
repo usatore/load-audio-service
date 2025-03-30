@@ -36,5 +36,3 @@ async def get_current_user(token: str = Depends(get_token)):
         raise UserIsNotPresentException
     return user
 
-async def get_current_admin_user(current_user: Users = Depends(get_current_user)):
-    return current_user  # это функции в фи нальном файле нет

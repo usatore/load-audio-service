@@ -14,7 +14,7 @@ class AudiofilesDAO(BaseDAO):
             user_id: int,
     ):
 
-        async with async_sessionmaker() as session:
+        async with async_session_maker() as session:
 
             add_audiofile = (
                 insert(Audiofiles)

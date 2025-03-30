@@ -21,6 +21,9 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ALGORITHM: str
 
+    SUPERUSER_EMAIL: str
+    SUPERUSER_PASSWORD: str
+
 
 
     model_config = ConfigDict(env_file=".env", extra="ignore")

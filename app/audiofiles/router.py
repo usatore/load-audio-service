@@ -17,7 +17,8 @@ async def add_audiofile(
 ):
     user_folder = f"storage/user_{user.id}"
     os.makedirs(user_folder, exist_ok=True)
-    filepath = os.path.join(user_folder, f"{filename}.mp3")
+    #filepath = os.path.join(user_folder, f"{filename}.mp3")
+    filepath = user_folder + f'/{filename}.mp3'
 
     with open(filepath, "wb+") as file_object:
         shutil.copyfileobj(file.file, file_object)
