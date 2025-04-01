@@ -1,7 +1,7 @@
 from fastapi import HTTPException, status
 
 
-class BookingException(HTTPException):
+class ServiceException(HTTPException):
     status_code = 500
     detail = ""
 
@@ -9,46 +9,35 @@ class BookingException(HTTPException):
         super().__init__(status_code=self.status_code, detail=self.detail)
 
 
-class UserAlreadyExistsException(BookingException):
+class UserAlreadyExistsException(ServiceException):
     status_code = status.HTTP_409_CONFLICT
-    detail = "User already exists 1337"
+    detail = "User already exists"
 
 
-class IncorrectEmailOrPasswordException(BookingException):
+class IncorrectEmailOrPasswordException(ServiceException):
     status_code = status.HTTP_401_UNAUTHORIZED
-    detail = "Incorrect email or pssword"
+    detail = "Incorrect email or password"
 
 
-class TokenExpiredException(BookingException):
+class TokenExpiredException(ServiceException):
     status_code = status.HTTP_401_UNAUTHORIZED
-    detail = "Token expirrrred"
+    detail = "Token expired"
 
 
-class TokenAbsentException(BookingException):
+class TokenAbsentException(ServiceException):
     status_code = status.HTTP_401_UNAUTHORIZED
     detail = "Token absent"
 
 
-class IncorrectTokenFormatException(BookingException):
+class IncorrectTokenFormatException(ServiceException):
     status_code = status.HTTP_401_UNAUTHORIZED
-    detail = "Iiincorrect token format"
+    detail = "Incorrect token format"
 
 
-class UserIsNotPresentException(BookingException):
+class UserIsNotPresentException(ServiceException):
     status_code = status.HTTP_401_UNAUTHORIZED
-    detail = "uuuser is not present"
+    detail = "User is not present"
 
 
-class RoomCannotBeBookedException(BookingException):
-    status_code = status.HTTP_409_CONFLICT
-    detail = "Вы не можете это забронировать, не осталось номеров"
 
 
-class RoomCannotBeUnbookedException(BookingException):
-    status_code = status.HTTP_409_CONFLICT
-    detail = "Вы не можете удалить это бронирование, т.к. его нет"
-
-
-class RoomFullyBookedException(BookingException):
-    status_code = status.HTTP_409_CONFLICT
-    detail = "Не осталось свободных номеров"
